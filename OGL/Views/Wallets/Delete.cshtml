@@ -1,0 +1,43 @@
+﻿@model Repository.Models.Wallet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Usuwanie kursu</h2>
+
+<h3>Czy napewno chcesz usunac kurs waluty?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            <div>
+                <a href="@Url.Action("Index", "Wallets")" class="btn btn-warning">Wroc</a>
+                <input type="submit" value="Usun" class="btn btn-danger" />
+            </div>
+
+        </div>
+    }
+</div>

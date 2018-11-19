@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Repository.Models.Wallet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Waluty portfela</h2>
+
+<a href="@Url.Action("Create", "Wallets")" class="btn btn-warning">Dodaj</a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Currency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Wallets", new { id = item.Id })" class="btn btn-warning">Edytuj</a>
+            <a href="@Url.Action("Details", "Wallets", new { id = item.Id })" class="btn btn-warning">Szczegoly</a>
+            @if (item.Currency != "PLN")
+            {
+                <a href="@Url.Action("Delete", "Wallets", new { id = item.Id })" class="btn btn-danger">Usun</a>
+                <a href="@Url.Action("Sell", "Wallets", new { id = item.Id })" class="btn btn-primary">Sprzedaj</a>
+                <a href="@Url.Action("Buy", "Wallets", new { id = item.Id })" class="btn btn-warning">Kup</a>
+            }
+            else
+            {
+                <a class="btn btn-danger" style="cursor:not-allowed; opacity:0.5;">Usun</a>
+            }
+        </td>
+    </tr>
+}
+
+</table>
